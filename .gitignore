@@ -1,0 +1,27 @@
+# PSMFC Servers Project - Git Ignore
+
+# SECURITY: SSH Keys and Sensitive Data
+# DO NOT commit these files to any public repository
+ssh-access-configuration.md
+
+# Backup files
+*.bak
+*~
+
+# Temporary files
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Environment files (if any created)
+.env
+.env.*
+
+# Log files
+*.log
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
