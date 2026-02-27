@@ -62,7 +62,18 @@
   - hcaxdev.psmfc.org
   - sddtdev.psmfc.org
 - **Access:** `ssh nodejs@battra.psmfc.org`
+- **Passwordless Sudo:** Yes
 - **Status:** ✅ Ready for DNS switchover
+
+#### Gabara (gabara.psmfc.org)
+- **IP:** 10.2.13.181
+- **Purpose:** Production applications
+- **Applications:** 2 Node.js apps
+  - fishregs-data.psmfc.org
+  - sddt.psmfc.org
+- **Access:** `ssh nodejs@gabara.psmfc.org`
+- **Passwordless Sudo:** Yes
+- **Status:** ✅ Active
 
 #### Manda (manda.psmfc.org)
 - **IP:** 10.2.13.182
@@ -333,6 +344,7 @@ ls /home/*data
 | 2026-02-26 | 3 domains switched to Manda | kbfish-api.psmfc.org (direct), phish.rmis.org (proxy), phish.streamnet.org (proxy) |
 | 2026-02-26 | Disabled switched apps on Phish | Stopped PM2 apps and disabled Nginx configs for library, kbfish-api, rmis |
 | 2026-02-26 | Standardized Manda SSH access | Changed from root to nodejs user, added passwordless sudo, nodejs home on Horus |
+| 2026-02-26 | Added Gabara server | gabara.psmfc.org (10.2.13.181) with fishregs-data and sddt apps |
 
 ---
 
