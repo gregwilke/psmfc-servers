@@ -82,9 +82,19 @@
 
 #### Phish (phish.psmfc.org)
 - **OS:** Ubuntu 18.04
-- **Status:** Production (being replaced by manda)
-- **Access:** `ssh nodejs@phish.psmfc.org`
-- **Action:** Do not modify - reference only
+- **Status:** Partially decommissioned
+- **Access:** `ssh nodejs@phish.psmfc.org` (has passwordless sudo)
+
+**Disabled Apps (switched to Manda):**
+- library (phish.streamnet.org)
+- kbfish-api (kbfish-api.psmfc.org)
+- rmis (phish.rmis.org)
+
+**Still Running (pending switchover):**
+- kbfish (data.kbfishc.org)
+- kbfish-dev (dev.kbfishc.org)
+- kbfish-api-dev (test.kbfishc.org)
+- streamnet
 
 ---
 
@@ -150,11 +160,11 @@ There are two ways traffic reaches our servers:
 
 #### ✅ Switched to Manda (3 domains)
 
-| Domain | Routing | Verified |
-|--------|---------|----------|
-| kbfish-api.psmfc.org | Direct DNS → 10.2.13.182 | ✅ 2026-02-26 |
-| phish.rmis.org | Via psmfc-web proxy | ✅ 2026-02-26 |
-| phish.streamnet.org | Via psmfc-web proxy | ✅ 2026-02-26 |
+| Domain | Routing | Verified | Phish Disabled |
+|--------|---------|----------|----------------|
+| kbfish-api.psmfc.org | Direct DNS → 10.2.13.182 | ✅ 2026-02-26 | ✅ 2026-02-26 |
+| phish.rmis.org | Via psmfc-web proxy | ✅ 2026-02-26 | ✅ 2026-02-26 |
+| phish.streamnet.org | Via psmfc-web proxy | ✅ 2026-02-26 | ✅ 2026-02-26 |
 
 #### ⏳ Pending - Manda (3 domains)
 
@@ -320,6 +330,7 @@ ls /home/*data
 | 2026-02-26 | Migration preparation complete | All servers ready for DNS switchover |
 | 2026-02-26 | Documentation created | SSH access, DNS checklist, auto-mount config |
 | 2026-02-26 | 3 domains switched to Manda | kbfish-api.psmfc.org (direct), phish.rmis.org (proxy), phish.streamnet.org (proxy) |
+| 2026-02-26 | Disabled switched apps on Phish | Stopped PM2 apps and disabled Nginx configs for library, kbfish-api, rmis |
 
 ---
 
