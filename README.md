@@ -118,6 +118,25 @@ ssh root@manda.psmfc.org "ps aux | grep 'node /var' | grep -v grep"
 
 ---
 
+## 🌐 Network Architecture
+
+### Routing Methods
+
+There are two ways traffic reaches our servers:
+
+1. **Direct DNS** (newer approach)
+   - DNS points directly to server IP (e.g., 10.2.13.182 for Manda)
+   - Example: kbfish-api.psmfc.org → manda.psmfc.org (10.2.13.182)
+
+2. **IIS Reverse Proxy** (legacy approach)
+   - DNS points to psmfc-web.psmfc.org (10.2.13.10)
+   - IIS reverse proxy forwards requests to backend server
+   - Example: phish.rmis.org → psmfc-web (10.2.13.10) → manda (10.2.13.182)
+
+**Goal:** Standardize on direct DNS when time permits.
+
+---
+
 ## 📋 Current Status (as of 2026-02-26)
 
 ### Migration Status
@@ -127,26 +146,31 @@ ssh root@manda.psmfc.org "ps aux | grep 'node /var' | grep -v grep"
 | Battra | 3/3 running | ✅ Complete | ✅ Valid | N/A | ✅ Ready |
 | Manda | 6/6 running | ✅ Complete | ✅ Valid | ✅ Configured | ✅ Ready |
 
-### DNS Switchover
-- **Status:** NOT YET PERFORMED
-- **Planned:** When Greg is ready
-- **Preparation:** All verification complete
-- **Checklist:** Use dns-switchover-checklist.md
+### DNS Switchover Status
 
-### Domains Ready to Switch
+#### ✅ Switched to Manda (3 domains)
 
-**Battra (3 domains):**
-- fishregs-dev.psmfc.org
-- hcaxdev.psmfc.org
-- sddtdev.psmfc.org
+| Domain | Routing | Verified |
+|--------|---------|----------|
+| kbfish-api.psmfc.org | Direct DNS → 10.2.13.182 | ✅ 2026-02-26 |
+| phish.rmis.org | Via psmfc-web proxy | ✅ 2026-02-26 |
+| phish.streamnet.org | Via psmfc-web proxy | ✅ 2026-02-26 |
 
-**Manda (6 active domains):**
-- phish.streamnet.org
-- data.kbfishc.org
-- dev.kbfishc.org
-- phish.rmis.org
-- kbfish-api.psmfc.org
-- test.kbfishc.org
+#### ⏳ Pending - Manda (3 domains)
+
+| Domain | Current | Target |
+|--------|---------|--------|
+| data.kbfishc.org | phish | manda |
+| dev.kbfishc.org | phish | manda |
+| test.kbfishc.org | phish | manda |
+
+#### ⏳ Pending - Battra (3 domains)
+
+| Domain | Target |
+|--------|--------|
+| fishregs-dev.psmfc.org | battra (10.2.13.180) |
+| hcaxdev.psmfc.org | battra (10.2.13.180) |
+| sddtdev.psmfc.org | battra (10.2.13.180) |
 
 **Manda (2 inactive - ready if needed):**
 - api2.streamnet.org (streamnet-api not running)
@@ -295,6 +319,7 @@ ls /home/*data
 |------|-------|---------|
 | 2026-02-26 | Migration preparation complete | All servers ready for DNS switchover |
 | 2026-02-26 | Documentation created | SSH access, DNS checklist, auto-mount config |
+| 2026-02-26 | 3 domains switched to Manda | kbfish-api.psmfc.org (direct), phish.rmis.org (proxy), phish.streamnet.org (proxy) |
 
 ---
 

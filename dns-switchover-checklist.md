@@ -180,11 +180,13 @@ server {
 
 #### ✅ Completed Switchovers
 
-| Domain | New Server | Port | SSL | Backend App | Switched |
-|--------|------------|------|-----|-------------|----------|
-| kbfish-api.psmfc.org | manda (10.2.13.182) | 5005 | Yes | kbfish-api | 2026-02-26 |
-| phish.rmis.org | manda (10.2.13.182) | 5001 | Yes | rmis-api | 2026-02-26 |
-| phish.streamnet.org | manda (10.2.13.182) | 3000 | No | library | 2026-02-26 |
+| Domain | New Server | Port | SSL | Backend App | Routing | Switched |
+|--------|------------|------|-----|-------------|---------|----------|
+| kbfish-api.psmfc.org | manda (10.2.13.182) | 5005 | Yes | kbfish-api | Direct DNS | 2026-02-26 |
+| phish.rmis.org | manda (10.2.13.182) | 5001 | Yes | rmis-api | Via psmfc-web proxy | 2026-02-26 |
+| phish.streamnet.org | manda (10.2.13.182) | 3000 | No | library | Via psmfc-web proxy | 2026-02-26 |
+
+> **Note:** Some domains route through the IIS reverse proxy at psmfc-web.psmfc.org (10.2.13.10) rather than using direct DNS. This is a legacy configuration; goal is to standardize on direct DNS when time permits.
 
 #### ⏳ Pending Switchovers
 
