@@ -85,7 +85,7 @@ ssh nodejs@battra.psmfc.org "netstat -tlnp | grep -E ':(80|443|3000|3001|3002)' 
 
 #### 3. Verify Nginx Configuration
 ```bash
-ssh nodejs@battra.psmfc.org "sudo sudo nginx -t"
+ssh nodejs@battra.psmfc.org "sudo nginx -t"
 ```
 
 **Expected:** `nginx: configuration file /etc/nginx/nginx.conf test is successful`
@@ -625,9 +625,9 @@ pm2 list
 pm2 restart <app-name>
 
 # Check Nginx
-sudo sudo nginx -t
+sudo nginx -t
 sudo systemctl status nginx
-sudo sudo systemctl reload nginx
+sudo systemctl reload nginx
 
 # Check ports
 netstat -tlnp | grep LISTEN
