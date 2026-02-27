@@ -85,7 +85,7 @@ ssh nodejs@battra.psmfc.org "netstat -tlnp | grep -E ':(80|443|3000|3001|3002)' 
 
 #### 3. Verify Nginx Configuration
 ```bash
-ssh nodejs@battra.psmfc.org "sudo nginx -t"
+ssh nodejs@battra.psmfc.org "sudo sudo nginx -t"
 ```
 
 **Expected:** `nginx: configuration file /etc/nginx/nginx.conf test is successful`
@@ -220,7 +220,7 @@ ssh nodejs@manda.psmfc.org "ps aux | grep 'node /var' | grep -v grep"
 
 #### 2. Check Listening Ports
 ```bash
-ssh root@manda.psmfc.org "netstat -tlnp | grep -E ':(80|443|3000|3001|3002|5001|5005|5006)' | grep LISTEN"
+ssh nodejs@manda.psmfc.org "netstat -tlnp | grep -E ':(80|443|3000|3001|3002|5001|5005|5006)' | grep LISTEN"
 ```
 
 **Expected:**
@@ -235,14 +235,14 @@ ssh root@manda.psmfc.org "netstat -tlnp | grep -E ':(80|443|3000|3001|3002|5001|
 
 #### 3. Verify Nginx Configuration
 ```bash
-ssh root@manda.psmfc.org "nginx -t"
+ssh nodejs@manda.psmfc.org "sudo nginx -t"
 ```
 
 **Expected:** `nginx: configuration file /etc/nginx/nginx.conf test is successful`
 
 #### 4. Check Nginx Sites Enabled
 ```bash
-ssh root@manda.psmfc.org "ls -1 /etc/nginx/sites-enabled/*.conf | xargs -n1 basename"
+ssh nodejs@manda.psmfc.org "ls -1 /etc/nginx/sites-enabled/*.conf | xargs -n1 basename"
 ```
 
 **Expected files:**
@@ -257,7 +257,7 @@ ssh root@manda.psmfc.org "ls -1 /etc/nginx/sites-enabled/*.conf | xargs -n1 base
 
 #### 5. Verify SSL Certificates
 ```bash
-ssh root@manda.psmfc.org "ls -la /etc/ssl/certs/ | grep -E 'kbfishc|psmfc|rmpc'"
+ssh nodejs@manda.psmfc.org "ls -la /etc/ssl/certs/ | grep -E 'kbfishc|psmfc|rmpc'"
 ```
 
 **Expected certificates:**
@@ -268,7 +268,7 @@ ssh root@manda.psmfc.org "ls -la /etc/ssl/certs/ | grep -E 'kbfishc|psmfc|rmpc'"
 - www.rmpc.org.crt
 
 ```bash
-ssh root@manda.psmfc.org "ls -la /etc/ssl/private/ | grep -E 'kbfishc|psmfc|rmpc'"
+ssh nodejs@manda.psmfc.org "ls -la /etc/ssl/private/ | grep -E 'kbfishc|psmfc|rmpc'"
 ```
 
 **Expected keys:**
@@ -278,38 +278,38 @@ ssh root@manda.psmfc.org "ls -la /etc/ssl/private/ | grep -E 'kbfishc|psmfc|rmpc
 
 #### 6. Test Application Responses
 ```bash
-ssh root@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:3000"  # library
-ssh root@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:3001"  # kbfish
-ssh root@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:3002"  # kbfish-dev
-ssh root@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:5001"  # rmis-api
-ssh root@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:5005"  # kbfish-api
-ssh root@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:5006"  # kbfish-api-dev
+ssh nodejs@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:3000"  # library
+ssh nodejs@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:3001"  # kbfish
+ssh nodejs@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:3002"  # kbfish-dev
+ssh nodejs@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:5001"  # rmis-api
+ssh nodejs@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:5005"  # kbfish-api
+ssh nodejs@manda.psmfc.org "curl -s -o /dev/null -w '%{http_code}' http://localhost:5006"  # kbfish-api-dev
 ```
 
 **Expected:** All should return `200` or `302`
 
 #### 7. Verify Auto-Mount Configuration
 ```bash
-ssh root@manda.psmfc.org "systemctl status autofs"
+ssh nodejs@manda.psmfc.org "sudo systemctl status autofs"
 ```
 
 **Expected:** `Active: active (running)`
 
 ```bash
-ssh root@manda.psmfc.org "ls /home/*data | wc -l"
+ssh nodejs@manda.psmfc.org "ls /home/*data | wc -l"
 ```
 
 **Expected:** Should show 20+ agency directories
 
 ```bash
-ssh root@manda.psmfc.org "crontab -l | grep lscwtdirs"
+ssh nodejs@manda.psmfc.org "sudo crontab -l | grep lscwtdirs"
 ```
 
 **Expected:** `0 * * * * /usr/local/sbin/lscwtdirs > /dev/null 2>&1`
 
 #### 8. Verify PM2 Service
 ```bash
-ssh root@manda.psmfc.org "systemctl status pm2-nodejs"
+ssh nodejs@manda.psmfc.org "sudo systemctl status pm2-nodejs"
 ```
 
 **Expected:** `Active: active (running)`
@@ -354,7 +354,7 @@ adfgdata, cctdata, cdfodata, cdfw01data, cdfw02data, cdfwktdata, critfcdata, ctu
 
 **Verification:**
 ```bash
-ssh root@manda.psmfc.org "ls /home/*data/up/ | head -3"
+ssh nodejs@manda.psmfc.org "ls /home/*data/up/ | head -3"
 ```
 Should list files in agency upload directories.
 
@@ -477,10 +477,10 @@ Open in browser and test:
 #### Monitor Server Logs
 ```bash
 # Nginx access logs
-ssh root@manda.psmfc.org "tail -f /var/log/nginx/access.log"
+ssh nodejs@manda.psmfc.org "tail -f /var/log/nginx/access.log"
 
 # Nginx error logs
-ssh root@manda.psmfc.org "tail -f /var/log/nginx/error.log"
+ssh nodejs@manda.psmfc.org "tail -f /var/log/nginx/error.log"
 
 # PM2 logs
 ssh nodejs@manda.psmfc.org "pm2 logs --lines 50"
@@ -498,10 +498,10 @@ ssh nodejs@manda.psmfc.org "pm2 list" | grep -E "↺"
 #### Monitor Resource Usage
 ```bash
 # CPU and Memory
-ssh root@manda.psmfc.org "top -b -n 1 | head -20"
+ssh nodejs@manda.psmfc.org "top -b -n 1 | head -20"
 
 # Disk usage
-ssh root@manda.psmfc.org "df -h"
+ssh nodejs@manda.psmfc.org "df -h"
 ```
 
 ### Verification Checklist Template
@@ -568,12 +568,12 @@ If issues are discovered after DNS switchover:
 #### Issue: SSL certificate errors
 **Check:**
 - Certificate files exist: `ls /etc/ssl/certs/<cert>.crt`
-- Nginx configuration: `nginx -t`
+- Nginx configuration: `sudo nginx -t`
 - Certificate matches domain
 
 **Fix:**
 - Verify SSL certificate paths in Nginx config
-- Reload Nginx: `systemctl reload nginx`
+- Reload Nginx: `sudo systemctl reload nginx`
 
 #### Issue: 502 Bad Gateway
 **Check:**
@@ -590,11 +590,11 @@ If issues are discovered after DNS switchover:
 **Check:**
 - Auto-mount directories visible: `ls /home/*data`
 - lscwtdirs cron running: `crontab -l`
-- autofs service: `systemctl status autofs`
+- autofs service: `sudo systemctl status autofs`
 
 **Fix:**
 - Run lscwtdirs manually: `/usr/local/sbin/lscwtdirs`
-- Restart autofs: `systemctl restart autofs`
+- Restart autofs: `sudo systemctl restart autofs`
 - Check network connectivity to Horus
 
 ---
@@ -611,9 +611,8 @@ If issues are discovered after DNS switchover:
 # Battra
 ssh nodejs@battra.psmfc.org
 
-# Manda (as nodejs or root)
+# Manda
 ssh nodejs@manda.psmfc.org
-ssh root@manda.psmfc.org
 ```
 
 ### Key Commands
@@ -626,9 +625,9 @@ pm2 list
 pm2 restart <app-name>
 
 # Check Nginx
-sudo nginx -t
+sudo sudo nginx -t
 sudo systemctl status nginx
-sudo systemctl reload nginx
+sudo sudo systemctl reload nginx
 
 # Check ports
 netstat -tlnp | grep LISTEN
@@ -639,7 +638,7 @@ tail -f /var/log/nginx/error.log
 
 # Check auto-mount
 ls /home/*data
-systemctl status autofs
+sudo systemctl status autofs
 ```
 
 ### Emergency Contacts

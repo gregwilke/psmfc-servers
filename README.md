@@ -74,8 +74,9 @@
   - phish.rmis.org
   - kbfish-api.psmfc.org
   - test.kbfishc.org
-- **Access:** `ssh root@manda.psmfc.org`
-- **Special:** Auto-mounted /home directories to Horus for file storage
+- **Access:** `ssh nodejs@manda.psmfc.org`
+- **Passwordless Sudo:** Yes
+- **Special:** Auto-mounted /home directories to Horus for file storage (including nodejs home)
 - **Status:** ✅ Ready for DNS switchover
 
 ### Old Servers (Being Retired)
@@ -113,7 +114,7 @@ ls -la ~/.ssh/id_ed25519
 ```bash
 # Test all servers
 ssh nodejs@battra.psmfc.org "hostname"
-ssh root@manda.psmfc.org "hostname"
+ssh nodejs@manda.psmfc.org "hostname"
 ssh nodejs@phish.psmfc.org "hostname"
 ```
 
@@ -123,7 +124,7 @@ ssh nodejs@phish.psmfc.org "hostname"
 ssh nodejs@battra.psmfc.org "pm2 list"
 
 # Manda applications
-ssh root@manda.psmfc.org "ps aux | grep 'node /var' | grep -v grep"
+ssh nodejs@manda.psmfc.org "ps aux | grep 'node /var' | grep -v grep"
 ```
 
 ---
@@ -196,8 +197,8 @@ There are two ways traffic reaches our servers:
 ssh nodejs@battra.psmfc.org "pm2 list"
 
 # Manda
-ssh root@manda.psmfc.org "ps aux | grep 'node /var' | grep -v grep"
-ssh root@manda.psmfc.org "systemctl status pm2-nodejs"
+ssh nodejs@manda.psmfc.org "ps aux | grep 'node /var' | grep -v grep"
+ssh nodejs@manda.psmfc.org "sudo systemctl status pm2-nodejs"
 ```
 
 ### Restart Applications
@@ -213,15 +214,15 @@ ssh nodejs@battra.psmfc.org "pm2 restart all"
 ```bash
 # Test configuration
 ssh nodejs@battra.psmfc.org "sudo nginx -t"
-ssh root@manda.psmfc.org "nginx -t"
+ssh nodejs@manda.psmfc.org "sudo nginx -t"
 
 # Reload Nginx
 ssh nodejs@battra.psmfc.org "sudo systemctl reload nginx"
-ssh root@manda.psmfc.org "systemctl reload nginx"
+ssh nodejs@manda.psmfc.org "sudo systemctl reload nginx"
 
 # Check status
 ssh nodejs@battra.psmfc.org "sudo systemctl status nginx"
-ssh root@manda.psmfc.org "systemctl status nginx"
+ssh nodejs@manda.psmfc.org "sudo systemctl status nginx"
 ```
 
 ### View Logs
@@ -230,25 +231,25 @@ ssh root@manda.psmfc.org "systemctl status nginx"
 ssh nodejs@battra.psmfc.org "pm2 logs --lines 50"
 
 # Manda - Nginx logs
-ssh root@manda.psmfc.org "tail -f /var/log/nginx/error.log"
+ssh nodejs@manda.psmfc.org "tail -f /var/log/nginx/error.log"
 
 # Manda - Application logs (if PM2 accessible)
-ssh root@manda.psmfc.org "sudo -u nodejs bash -c 'cd /var/nodejs && pm2 logs --lines 50'"
+ssh nodejs@manda.psmfc.org "sudo -u nodejs bash -c 'cd /var/nodejs && pm2 logs --lines 50'"
 ```
 
 ### Check Auto-Mount (Manda only)
 ```bash
 # Verify autofs service
-ssh root@manda.psmfc.org "systemctl status autofs"
+ssh nodejs@manda.psmfc.org "sudo systemctl status autofs"
 
 # List mounted directories
-ssh root@manda.psmfc.org "ls /home/*data"
+ssh nodejs@manda.psmfc.org "ls /home/*data"
 
 # Test directory access
-ssh root@manda.psmfc.org "ls /home/*data/up/ | head -5"
+ssh nodejs@manda.psmfc.org "ls /home/*data/up/ | head -5"
 
 # Check cron job
-ssh root@manda.psmfc.org "crontab -l | grep lscwtdirs"
+ssh nodejs@manda.psmfc.org "sudo crontab -l | grep lscwtdirs"
 ```
 
 ---
@@ -331,6 +332,7 @@ ls /home/*data
 | 2026-02-26 | Documentation created | SSH access, DNS checklist, auto-mount config |
 | 2026-02-26 | 3 domains switched to Manda | kbfish-api.psmfc.org (direct), phish.rmis.org (proxy), phish.streamnet.org (proxy) |
 | 2026-02-26 | Disabled switched apps on Phish | Stopped PM2 apps and disabled Nginx configs for library, kbfish-api, rmis |
+| 2026-02-26 | Standardized Manda SSH access | Changed from root to nodejs user, added passwordless sudo, nodejs home on Horus |
 
 ---
 
