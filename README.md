@@ -75,6 +75,21 @@
 - **Passwordless Sudo:** Yes
 - **Status:** ✅ Active
 
+#### Perciweb (perciweb.psmfc.org)
+- **IP:** 10.2.13.82
+- **Purpose:** Web hosting (Apache)
+- **Web Server:** Apache2
+- **Sites:** 13 virtual hosts including:
+  - www.streamnet.org, dev.streamnet.org
+  - www.recfin.org
+  - www.pikeminnow.org
+  - fishregs.psmfc.org
+  - kbfishc.org
+  - www.ifrmp.org
+- **Access:** `ssh greg@perciweb.psmfc.org`
+- **Passwordless Sudo:** Yes
+- **Status:** ✅ Active
+
 #### Manda (manda.psmfc.org)
 - **IP:** 10.2.13.182
 - **Purpose:** Production applications
@@ -345,6 +360,7 @@ ls /home/*data
 | 2026-02-26 | Disabled switched apps on Phish | Stopped PM2 apps and disabled Nginx configs for library, kbfish-api, rmis |
 | 2026-02-26 | Standardized Manda SSH access | Changed from root to nodejs user, added passwordless sudo, nodejs home on Horus |
 | 2026-02-26 | Added Gabara server | gabara.psmfc.org (10.2.13.181) with fishregs-data and sddt apps |
+| 2026-02-26 | Added Perciweb server | perciweb.psmfc.org (10.2.13.82) Apache server with 13 sites |
 
 ---
 
