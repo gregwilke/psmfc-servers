@@ -65,6 +65,14 @@
 - **Passwordless Sudo:** Yes
 - **Status:** ✅ Ready for DNS switchover
 
+#### Horus (horus.psmfc.org)
+- **IP:** 10.2.13.84
+- **Purpose:** NFS file storage for CWT agency directories
+- **Storage:** /usr/home/ (30 directories, mounted by Manda/Phish via autofs)
+- **Access:** `ssh greg@horus.psmfc.org`
+- **Passwordless Sudo:** Yes
+- **Status:** ✅ Active
+
 #### Gabara (gabara.psmfc.org)
 - **IP:** 10.2.13.181
 - **Purpose:** Production applications
@@ -372,6 +380,7 @@ ls /home/*data
 | 2026-02-26 | Added Gabara server | gabara.psmfc.org (10.2.13.181) with fishregs-data and sddt apps |
 | 2026-02-26 | Added Perciweb server | perciweb.psmfc.org (10.2.13.82) Apache server with 13 sites |
 | 2026-02-26 | Added Percidev server | percidev.psmfc.org (10.2.13.81) Dev Apache/Docker server |
+| 2026-02-26 | Added Horus server | horus.psmfc.org (10.2.13.84) NFS file storage |
 
 ---
 
