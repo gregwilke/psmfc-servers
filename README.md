@@ -93,6 +93,15 @@
 - **Passwordless Sudo:** Yes
 - **Status:** ✅ Active
 
+#### Saira (saira.psmfc.org)
+- **IP:** 10.2.14.85
+- **Purpose:** PostgreSQL database server
+- **Database:** PostgreSQL 16
+- **Access:** `ssh greg@saira.psmfc.org`
+- **Passwordless Sudo:** Yes
+- **Note:** AD-joined server, home dir at /var/greg, sshd_config modified for key auth
+- **Status:** ✅ Active
+
 #### Perciweb (perciweb.psmfc.org)
 - **IP:** 10.2.13.82
 - **Purpose:** Web hosting (Apache)
@@ -381,6 +390,7 @@ ls /home/*data
 | 2026-02-26 | Added Perciweb server | perciweb.psmfc.org (10.2.13.82) Apache server with 13 sites |
 | 2026-02-26 | Added Percidev server | percidev.psmfc.org (10.2.13.81) Dev Apache/Docker server |
 | 2026-02-26 | Added Horus server | horus.psmfc.org (10.2.13.84) NFS file storage |
+| 2026-02-26 | Added Saira server | saira.psmfc.org (10.2.14.85) PostgreSQL 16 database |
 
 ---
 
