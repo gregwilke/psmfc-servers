@@ -140,17 +140,22 @@
 - **Special:** Auto-mounted /home directories to Horus for file storage (including nodejs home)
 - **Status:** ✅ Ready for DNS switchover
 
-### Windows Servers (RDP only)
-
-#### StreamnetAPI (streamnetapi.psmfc.org)
-- **Purpose:** StreamNet API server
-- **OS:** Windows Server 2019
-- **Access:** RDP only (no SSH)
+### Windows Servers
 
 #### StreamnetWeb (streamnetweb.psmfc.org)
 - **Purpose:** StreamNet web server
 - **OS:** Windows Server 2019
-- **Access:** RDP only (no SSH)
+- **OpenSSH:** v10.0.0.0 (service, automatic start)
+- **Access:** `ssh greg@streamnetweb.psmfc.org` or RDP
+- **Status:** ✅ SSH active
+
+#### StreamnetAPI (streamnetapi.psmfc.org)
+- **IP:** 10.2.13.88
+- **Purpose:** StreamNet API server
+- **OS:** Windows Server 2019
+- **OpenSSH:** v10.0.0.0 (service, automatic start)
+- **Access:** `ssh greg@streamnetapi.psmfc.org` or RDP
+- **Status:** ✅ SSH active
 
 ### Old Servers (Being Retired)
 
@@ -412,7 +417,9 @@ ls /home/*data
 | 2026-02-26 | Added Horus server | horus.psmfc.org (10.2.13.84) NFS file storage |
 | 2026-02-26 | Added Saira server | saira.psmfc.org (10.2.14.85) PostgreSQL 16 database |
 | 2026-02-26 | Added Laeta server | laeta.psmfc.org (10.2.14.84) Dev PostgreSQL 16 database |
-| 2026-02-26 | Added Windows servers | streamnetapi/streamnetweb (RDP only, no SSH) |
+| 2026-02-26 | Added Windows servers | streamnetapi (RDP only), streamnetweb (RDP only) |
+| 2026-02-28 | SSH configured on StreamnetWeb | OpenSSH v10.0.0.0 service, key auth working |
+| 2026-02-28 | SSH configured on StreamnetAPI | OpenSSH v10.0.0.0 service, key auth working |
 
 ---
 
