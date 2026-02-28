@@ -117,6 +117,14 @@
 - **Passwordless Sudo:** Yes
 - **Status:** ✅ Active
 
+#### Laeta (laeta.psmfc.org)
+- **IP:** 10.2.14.84
+- **Purpose:** Development PostgreSQL database server
+- **Database:** PostgreSQL 16
+- **Access:** `ssh greg@laeta.psmfc.org`
+- **Passwordless Sudo:** Yes
+- **Status:** ✅ Active
+
 #### Manda (manda.psmfc.org)
 - **IP:** 10.2.13.182
 - **Purpose:** Production applications
@@ -391,6 +399,7 @@ ls /home/*data
 | 2026-02-26 | Added Percidev server | percidev.psmfc.org (10.2.13.81) Dev Apache/Docker server |
 | 2026-02-26 | Added Horus server | horus.psmfc.org (10.2.13.84) NFS file storage |
 | 2026-02-26 | Added Saira server | saira.psmfc.org (10.2.14.85) PostgreSQL 16 database |
+| 2026-02-26 | Added Laeta server | laeta.psmfc.org (10.2.14.84) Dev PostgreSQL 16 database |
 
 ---
 
