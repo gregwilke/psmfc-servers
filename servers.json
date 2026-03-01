@@ -443,7 +443,7 @@
       "ip": "10.2.13.82",
       "os": {
         "name": "Ubuntu",
-        "version": "24.04 LTS",
+        "version": "24.04.4 LTS",
         "codename": "noble",
         "platform": "linux"
       },
@@ -453,74 +453,135 @@
         "command": "ssh greg@perciweb.psmfc.org",
         "sudo": true,
         "keyPath": "/home/greg/.ssh/authorized_keys",
-        "homeDir": "/home/greg",
-        "sshStatus": "permission-denied-on-last-attempt"
+        "homeDir": "/home/greg"
       },
       "role": "production",
       "status": "active",
+      "node": {
+        "version": "v18.19.1"
+      },
       "services": {
-        "nginx": { "installed": false },
+        "nginx": {
+          "installed": true,
+          "running": false,
+          "version": "1.24.0",
+          "sitesPath": "/etc/nginx/sites-enabled/",
+          "sites": ["default"]
+        },
         "pm2": { "installed": false },
         "apache": {
           "installed": true,
           "running": true,
+          "version": "2.4.58",
           "sitesPath": "/etc/apache2/sites-enabled/",
           "sites": [
-            "www.streamnet.org",
-            "dev.streamnet.org",
-            "www.recfin.org",
-            "www.pikeminnow.org",
-            "fishregs.psmfc.org",
-            "kbfishc.org",
-            "www.ifrmp.org"
+            "crfswiki.psmfc.org.conf",
+            "dev.ifrmp.org.conf",
+            "dev.streamnet.org.conf",
+            "fishregs.psmfc.org.conf",
+            "groundfish.psmfc.org.conf",
+            "kbfishc.org.conf",
+            "kbfishcdev.psmfc.org.conf",
+            "pikeminnowdev.psmfc.org.conf",
+            "public.finsnet.org.conf",
+            "www.ifrmp.org.conf",
+            "www.pikeminnow.org.conf",
+            "www.recfin.org.conf",
+            "www.streamnet.org.conf"
           ]
         },
         "postgresql": { "installed": false },
         "docker": { "installed": false },
-        "autofs": { "installed": false },
+        "autofs": {
+          "installed": true,
+          "running": true
+        },
         "nfs": { "installed": false }
       },
       "applications": [
         {
           "name": "streamnet-web",
           "domain": "www.streamnet.org",
-          "framework": "Apache VirtualHost"
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/www.streamnet.org.conf"
         },
         {
           "name": "streamnet-dev",
           "domain": "dev.streamnet.org",
-          "framework": "Apache VirtualHost"
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/dev.streamnet.org.conf"
         },
         {
           "name": "recfin",
           "domain": "www.recfin.org",
-          "framework": "Apache VirtualHost"
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/www.recfin.org.conf"
         },
         {
           "name": "pikeminnow",
           "domain": "www.pikeminnow.org",
-          "framework": "Apache VirtualHost"
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/www.pikeminnow.org.conf"
+        },
+        {
+          "name": "pikeminnowdev",
+          "domain": "pikeminnowdev.psmfc.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/pikeminnowdev.psmfc.org.conf"
         },
         {
           "name": "fishregs",
           "domain": "fishregs.psmfc.org",
-          "framework": "Apache VirtualHost"
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/fishregs.psmfc.org.conf"
         },
         {
           "name": "kbfishc",
           "domain": "kbfishc.org",
-          "framework": "Apache VirtualHost"
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/kbfishc.org.conf"
+        },
+        {
+          "name": "kbfishcdev",
+          "domain": "kbfishcdev.psmfc.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/kbfishcdev.psmfc.org.conf"
         },
         {
           "name": "ifrmp",
           "domain": "www.ifrmp.org",
-          "framework": "Apache VirtualHost"
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/www.ifrmp.org.conf"
+        },
+        {
+          "name": "ifrmp-dev",
+          "domain": "dev.ifrmp.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/dev.ifrmp.org.conf"
+        },
+        {
+          "name": "groundfish",
+          "domain": "groundfish.psmfc.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/groundfish.psmfc.org.conf"
+        },
+        {
+          "name": "crfswiki",
+          "domain": "crfswiki.psmfc.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/crfswiki.psmfc.org.conf"
+        },
+        {
+          "name": "finsnet",
+          "domain": "public.finsnet.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/public.finsnet.org.conf"
         }
       ],
       "notes": [
-        "Documented as hosting 13 virtual hosts - only 7 listed here from docs",
-        "SSH key may need to be re-added (permission denied on 2026-02-28)",
-        "Limited live data - details from documentation only"
+        "Primary Apache web hosting server with 13 virtual hosts",
+        "Nginx installed but not running (only default site config)",
+        "Node.js v18.19.1 available but no PM2/Node apps running"
       ]
     },
     "percidev": {
