@@ -797,6 +797,13 @@
           "version": "16.13",
           "clusters": [
             "16-main"
+          ],
+          "databases": [
+            { "name": "rpro", "description": "Production database" },
+            { "name": "rrep", "description": "Replication database" },
+            { "name": "rdev1" },
+            { "name": "rdev2" },
+            { "name": "rdev3" }
           ]
         },
         "docker": { "installed": false },
@@ -843,6 +850,13 @@
           "version": "16.12",
           "clusters": [
             "16-main"
+          ],
+          "databases": [
+            { "name": "rpro" },
+            { "name": "rrep" },
+            { "name": "rdev0" },
+            { "name": "rdev1" },
+            { "name": "rdev3" }
           ]
         },
         "docker": { "installed": false },
@@ -1030,6 +1044,103 @@
         "Domain account: psmfc.org\\greg",
         "Also accessible via RDP",
         "Hosts StreamNet API endpoints"
+      ]
+    },
+    "sql2016": {
+      "hostname": "SQL2016.psmfc.org",
+      "ip": "10.2.14.36",
+      "os": {
+        "name": "Windows Server",
+        "platform": "windows"
+      },
+      "role": "database",
+      "status": "active",
+      "access": {
+        "protocol": "mssql",
+        "port": 1433,
+        "auth": "windows-integrated",
+        "driver": "ODBC Driver 17 for SQL Server",
+        "domain": "PSMFC.ORG"
+      },
+      "services": {
+        "mssql": {
+          "installed": true,
+          "running": true,
+          "version": "MSSQL 2019",
+          "namedInstances": {
+            "Streamnet": {
+              "connectionString": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=SQL2016.psmfc.org\\Streamnet;Trusted_Connection=yes;",
+              "databases": [
+                {
+                  "name": "SN",
+                  "tableCount": 217,
+                  "description": "Primary StreamNet database"
+                }
+              ]
+            },
+            "KBFish": {
+              "connectionString": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=SQL2016.psmfc.org\\KBFish;Trusted_Connection=yes;",
+              "databases": [
+                { "name": "KBFish" },
+                { "name": "KBFishC" },
+                { "name": "KBFishC_Dev" },
+                { "name": "KBFishC_old" },
+                { "name": "KBFC_Postgresql" },
+                { "name": "KBFC_Test" }
+              ]
+            }
+          }
+        }
+      },
+      "applications": [],
+      "notes": [
+        "Production MSSQL server (labeled SQL2016 but actually MSSQL 2019)",
+        "Two named instances: Streamnet and KBFish",
+        "Windows Integrated Auth via AD account (PSMFC.ORG\\greg)",
+        "Access via pyodbc with ODBC Driver 17"
+      ]
+    },
+    "sqldev2016": {
+      "hostname": "SQLDev2016.psmfc.org",
+      "ip": "10.2.14.37",
+      "os": {
+        "name": "Windows Server",
+        "platform": "windows"
+      },
+      "role": "database",
+      "status": "active",
+      "access": {
+        "protocol": "mssql",
+        "port": 1433,
+        "auth": "windows-integrated",
+        "driver": "ODBC Driver 17 for SQL Server",
+        "domain": "PSMFC.ORG"
+      },
+      "services": {
+        "mssql": {
+          "installed": true,
+          "running": true,
+          "version": "MSSQL 2019",
+          "namedInstances": {
+            "Streamnet": {
+              "connectionString": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=SQLDev2016.psmfc.org\\Streamnet;Trusted_Connection=yes;",
+              "databases": [
+                { "name": "CalFish" },
+                { "name": "NFHAP_2" },
+                { "name": "PSCFishingRegulations" },
+                { "name": "SDDT_DB" },
+                { "name": "SQLMonitorRepository_D440" }
+              ]
+            }
+          }
+        }
+      },
+      "applications": [],
+      "notes": [
+        "Development MSSQL server (labeled SQLDev2016 but actually MSSQL 2019)",
+        "One accessible named instance: Streamnet (KBFish instance not found/not accessible)",
+        "Windows Integrated Auth via AD account (PSMFC.ORG\\greg)",
+        "Access via pyodbc with ODBC Driver 17"
       ]
     }
   }
