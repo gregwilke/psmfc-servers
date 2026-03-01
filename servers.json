@@ -246,7 +246,7 @@
       "ip": "10.2.13.181",
       "os": {
         "name": "Ubuntu",
-        "version": "24.04 LTS",
+        "version": "24.04.4 LTS",
         "codename": "noble",
         "platform": "linux"
       },
@@ -256,17 +256,25 @@
         "command": "ssh nodejs@gabara.psmfc.org",
         "sudo": true,
         "keyPath": "/home/nodejs/.ssh/authorized_keys",
-        "homeDir": "/home/nodejs",
-        "sshStatus": "permission-denied-on-last-attempt"
+        "homeDir": "/home/nodejs"
       },
       "role": "production",
       "status": "active",
+      "node": {
+        "version": "v20.19.4"
+      },
       "services": {
         "nginx": {
           "installed": true,
           "running": true,
+          "version": "1.24.0",
           "configPath": "/etc/nginx/",
-          "sitesPath": "/etc/nginx/sites-enabled/"
+          "sitesPath": "/etc/nginx/sites-enabled/",
+          "sites": [
+            "default",
+            "fishregs-data.psmfc.org.conf",
+            "sddt.psmfc.org.conf"
+          ]
         },
         "pm2": {
           "installed": true,
@@ -284,22 +292,24 @@
         {
           "name": "fishregs-data",
           "domain": "fishregs-data.psmfc.org",
-          "framework": "Node.js",
+          "framework": "Next.js",
           "manager": "pm2",
-          "status": "online"
+          "status": "online",
+          "appPath": "/var/www/html/SN-Regulations",
+          "configPath": "/etc/nginx/sites-enabled/fishregs-data.psmfc.org.conf"
         },
         {
           "name": "sddt",
           "domain": "sddt.psmfc.org",
-          "framework": "Node.js",
+          "framework": "Next.js",
           "manager": "pm2",
-          "status": "online"
+          "status": "online",
+          "appPath": "/var/www/html/SN-SDDT",
+          "configPath": "/etc/nginx/sites-enabled/sddt.psmfc.org.conf"
         }
       ],
       "notes": [
-        "Production server for fishregs-data and sddt",
-        "SSH key may need to be re-added (permission denied on 2026-02-28)",
-        "Limited live data - details from documentation only"
+        "Production server for fishregs-data and sddt"
       ]
     },
     "phish": {
