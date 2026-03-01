@@ -1,0 +1,958 @@
+{
+  "$schema": "servers-schema",
+  "lastUpdated": "2026-02-28",
+  "servers": {
+    "battra": {
+      "hostname": "battra.psmfc.org",
+      "ip": "10.2.13.180",
+      "os": {
+        "name": "Ubuntu",
+        "version": "24.04.4 LTS",
+        "codename": "noble",
+        "platform": "linux"
+      },
+      "ssh": {
+        "user": "nodejs",
+        "port": 22,
+        "command": "ssh nodejs@battra.psmfc.org",
+        "sudo": true,
+        "keyPath": "/var/nodejs/.ssh/authorized_keys",
+        "homeDir": "/var/nodejs"
+      },
+      "role": "development",
+      "status": "active",
+      "node": {
+        "version": "v20.19.6",
+        "manager": "nvm",
+        "systemVersion": "v18.19.1"
+      },
+      "services": {
+        "nginx": {
+          "installed": true,
+          "running": true,
+          "version": "1.24.0",
+          "configPath": "/etc/nginx/",
+          "sitesPath": "/etc/nginx/sites-enabled/",
+          "sites": [
+            "default",
+            "fishregs.psmfc.org.conf",
+            "hcax.psmfc.org.conf",
+            "sddt.psmfc.org.conf"
+          ]
+        },
+        "pm2": {
+          "installed": true,
+          "running": true,
+          "user": "nodejs",
+          "service": "pm2-nodejs.service"
+        },
+        "apache": { "installed": false },
+        "postgresql": { "installed": false },
+        "docker": { "installed": false },
+        "autofs": { "installed": false },
+        "nfs": { "installed": false }
+      },
+      "applications": [
+        {
+          "name": "fishregs-dev",
+          "domain": "fishregs-dev.psmfc.org",
+          "framework": "Next.js",
+          "manager": "pm2",
+          "port": 3000,
+          "status": "online",
+          "appPath": "/var/www/html/SN-Regulations",
+          "configPath": "/etc/nginx/sites-enabled/fishregs.psmfc.org.conf"
+        },
+        {
+          "name": "sddtdev",
+          "domain": "sddtdev.psmfc.org",
+          "framework": "Next.js",
+          "manager": "pm2",
+          "port": 3001,
+          "status": "online",
+          "appPath": "/var/www/html/SN-SDDT",
+          "configPath": "/etc/nginx/sites-enabled/sddt.psmfc.org.conf"
+        },
+        {
+          "name": "hcaxdev",
+          "domain": "hcaxdev.psmfc.org",
+          "framework": "Next.js",
+          "manager": "pm2",
+          "port": 3002,
+          "status": "online",
+          "appPath": "/var/www/html/streamnet-hcax-query-tool",
+          "configPath": "/etc/nginx/sites-enabled/hcax.psmfc.org.conf"
+        }
+      ],
+      "sslCerts": {
+        "cert": "/etc/ssl/certs/psmfc.org.crt",
+        "key": "/etc/ssl/private/psmfc.org.key"
+      },
+      "notes": [
+        "Pending DNS switchover for fishregs-dev, hcaxdev, sddtdev domains"
+      ]
+    },
+    "manda": {
+      "hostname": "manda.psmfc.org",
+      "ip": "10.2.13.182",
+      "os": {
+        "name": "Ubuntu",
+        "version": "24.04 LTS",
+        "codename": "noble",
+        "platform": "linux"
+      },
+      "ssh": {
+        "user": "nodejs",
+        "port": 22,
+        "command": "ssh nodejs@manda.psmfc.org",
+        "sudo": true,
+        "keyPath": "/home/nodejs/.ssh/authorized_keys",
+        "homeDir": "/home/nodejs",
+        "sshStatus": "permission-denied-on-last-attempt"
+      },
+      "role": "production",
+      "status": "active",
+      "services": {
+        "nginx": {
+          "installed": true,
+          "running": true,
+          "configPath": "/etc/nginx/",
+          "sitesPath": "/etc/nginx/sites-enabled/",
+          "sites": [
+            "api2.streamnet.org.conf",
+            "data.kbfishc.org.conf",
+            "dev.kbfishc.org.conf",
+            "internal.streamnet.org.conf",
+            "kbfish-api.psmfc.org.conf",
+            "phish.rmis.org.conf",
+            "phish.streamnet.org.conf",
+            "test.kbfishc.org.conf"
+          ]
+        },
+        "pm2": {
+          "installed": true,
+          "running": true,
+          "user": "nodejs",
+          "service": "pm2-nodejs.service"
+        },
+        "apache": { "installed": false },
+        "postgresql": { "installed": false },
+        "docker": { "installed": false },
+        "autofs": {
+          "installed": true,
+          "running": true,
+          "masterFile": "/etc/auto.master",
+          "homeFile": "/etc/auto.home",
+          "nfsSource": "horus:/usr/home/"
+        },
+        "nfs": { "installed": false }
+      },
+      "applications": [
+        {
+          "name": "library",
+          "domain": "phish.streamnet.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 3000,
+          "status": "online",
+          "appPath": "/var/www/html/library",
+          "configPath": "/etc/nginx/sites-enabled/phish.streamnet.org.conf"
+        },
+        {
+          "name": "kbfish",
+          "domain": "data.kbfishc.org",
+          "framework": "SvelteKit",
+          "manager": "pm2",
+          "port": 3001,
+          "status": "online",
+          "appPath": "/var/www/html/kbfish",
+          "configPath": "/etc/nginx/sites-enabled/data.kbfishc.org.conf"
+        },
+        {
+          "name": "kbfish-dev",
+          "domain": "dev.kbfishc.org",
+          "framework": "SvelteKit",
+          "manager": "pm2",
+          "port": 3002,
+          "status": "online",
+          "appPath": "/var/www/html/kbfish-dev",
+          "configPath": "/etc/nginx/sites-enabled/dev.kbfishc.org.conf"
+        },
+        {
+          "name": "rmis-api",
+          "domain": "phish.rmis.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 5001,
+          "status": "online",
+          "appPath": "/var/nodejs/rmis-api",
+          "configPath": "/etc/nginx/sites-enabled/phish.rmis.org.conf"
+        },
+        {
+          "name": "kbfish-api",
+          "domain": "kbfish-api.psmfc.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 5005,
+          "status": "online",
+          "appPath": "/var/nodejs/kbfish-api",
+          "configPath": "/etc/nginx/sites-enabled/kbfish-api.psmfc.org.conf"
+        },
+        {
+          "name": "kbfish-api-dev",
+          "domain": "test.kbfishc.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 5006,
+          "status": "online",
+          "appPath": "/var/nodejs/kbfish-api-dev",
+          "configPath": "/etc/nginx/sites-enabled/test.kbfishc.org.conf"
+        },
+        {
+          "name": "streamnet-api",
+          "domain": "api2.streamnet.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 5003,
+          "status": "stopped",
+          "appPath": "/var/nodejs/streamnet-api",
+          "configPath": "/etc/nginx/sites-enabled/api2.streamnet.org.conf"
+        }
+      ],
+      "sslCerts": {
+        "certs": [
+          "/etc/ssl/certs/kbfishc.org.crt",
+          "/etc/ssl/certs/kbfish-api.fullchain.crt",
+          "/etc/ssl/certs/test.kbfishc.org.fullchain.crt",
+          "/etc/ssl/certs/www.psmfc.org.crt",
+          "/etc/ssl/certs/www.rmpc.org.crt"
+        ],
+        "keys": [
+          "/etc/ssl/private/kbfishc.org.key",
+          "/etc/ssl/private/www.psmfc.org.key",
+          "/etc/ssl/private/www.rmpc.org.key"
+        ]
+      },
+      "notes": [
+        "Home directories auto-mounted from horus via autofs",
+        "24 agency CWT directories under /home/",
+        "Hourly cron runs /usr/local/sbin/lscwtdirs for directory persistence",
+        "Replacement for phish - most services already migrated",
+        "SSH key may need to be re-added (permission denied on 2026-02-28)"
+      ]
+    },
+    "gabara": {
+      "hostname": "gabara.psmfc.org",
+      "ip": "10.2.13.181",
+      "os": {
+        "name": "Ubuntu",
+        "version": "24.04 LTS",
+        "codename": "noble",
+        "platform": "linux"
+      },
+      "ssh": {
+        "user": "nodejs",
+        "port": 22,
+        "command": "ssh nodejs@gabara.psmfc.org",
+        "sudo": true,
+        "keyPath": "/home/nodejs/.ssh/authorized_keys",
+        "homeDir": "/home/nodejs",
+        "sshStatus": "permission-denied-on-last-attempt"
+      },
+      "role": "production",
+      "status": "active",
+      "services": {
+        "nginx": {
+          "installed": true,
+          "running": true,
+          "configPath": "/etc/nginx/",
+          "sitesPath": "/etc/nginx/sites-enabled/"
+        },
+        "pm2": {
+          "installed": true,
+          "running": true,
+          "user": "nodejs",
+          "service": "pm2-nodejs.service"
+        },
+        "apache": { "installed": false },
+        "postgresql": { "installed": false },
+        "docker": { "installed": false },
+        "autofs": { "installed": false },
+        "nfs": { "installed": false }
+      },
+      "applications": [
+        {
+          "name": "fishregs-data",
+          "domain": "fishregs-data.psmfc.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "status": "online"
+        },
+        {
+          "name": "sddt",
+          "domain": "sddt.psmfc.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "status": "online"
+        }
+      ],
+      "notes": [
+        "Production server for fishregs-data and sddt",
+        "SSH key may need to be re-added (permission denied on 2026-02-28)",
+        "Limited live data - details from documentation only"
+      ]
+    },
+    "phish": {
+      "hostname": "phish.psmfc.org",
+      "ip": "10.2.13.83",
+      "os": {
+        "name": "Ubuntu",
+        "version": "20.04.6 LTS",
+        "codename": "focal",
+        "platform": "linux"
+      },
+      "ssh": {
+        "user": "nodejs",
+        "port": 22,
+        "command": "ssh nodejs@phish.psmfc.org",
+        "sudo": true,
+        "keyPath": "/home/nodejs/.ssh/authorized_keys",
+        "homeDir": "/home/nodejs"
+      },
+      "role": "production",
+      "status": "decommissioning",
+      "node": {
+        "version": "v22.16.0",
+        "manager": "nvm"
+      },
+      "services": {
+        "nginx": {
+          "installed": true,
+          "running": true,
+          "version": "1.18.0",
+          "configPath": "/etc/nginx/",
+          "sitesPath": "/etc/nginx/sites-enabled/",
+          "sites": [
+            "default",
+            "internal.streamnet.org.conf"
+          ]
+        },
+        "pm2": {
+          "installed": true,
+          "running": true,
+          "user": "nodejs",
+          "service": "pm2-nodejs.service"
+        },
+        "apache": {
+          "installed": true,
+          "running": false,
+          "sitesPath": "/etc/apache2/sites-enabled/",
+          "sites": [
+            "000-default.conf",
+            "test.psmfc.org.conf"
+          ]
+        },
+        "postgresql": { "installed": false },
+        "docker": { "installed": false },
+        "autofs": {
+          "installed": true,
+          "running": true,
+          "nfsSource": "horus:/usr/home/"
+        },
+        "nfs": { "installed": false }
+      },
+      "applications": [
+        {
+          "name": "library",
+          "domain": "phish.streamnet.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 3000,
+          "status": "stopped",
+          "appPath": "/var/www/html/library/dist",
+          "notes": "Migrated to manda"
+        },
+        {
+          "name": "kbfish",
+          "domain": "data.kbfishc.org",
+          "framework": "SvelteKit",
+          "manager": "pm2",
+          "port": 3001,
+          "status": "online",
+          "appPath": "/var/www/html/kbfish",
+          "notes": "Pending migration to manda"
+        },
+        {
+          "name": "kbfish-dev",
+          "domain": "dev.kbfishc.org",
+          "framework": "SvelteKit",
+          "manager": "pm2",
+          "port": 3002,
+          "status": "online",
+          "appPath": "/var/www/html/kbfish-dev",
+          "notes": "Pending migration to manda"
+        },
+        {
+          "name": "streamnet-api",
+          "domain": "internal.streamnet.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 5003,
+          "status": "online",
+          "appPath": "/var/nodejs/streamnet-api"
+        },
+        {
+          "name": "kbfish-api",
+          "domain": "kbfish-api.psmfc.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 5005,
+          "status": "stopped",
+          "appPath": "/var/nodejs/kbfish-api",
+          "notes": "Migrated to manda"
+        },
+        {
+          "name": "kbfish-api-dev",
+          "domain": "test.kbfishc.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 5006,
+          "status": "online",
+          "appPath": "/var/nodejs/kbfish-api-dev",
+          "notes": "Pending migration to manda"
+        },
+        {
+          "name": "rmis-api",
+          "domain": "phish.rmis.org",
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 5001,
+          "status": "stopped",
+          "appPath": "/var/nodejs/rmis-api",
+          "notes": "Migrated to manda"
+        }
+      ],
+      "notes": [
+        "Ubuntu 20.04 is past EOL - being replaced by manda (Ubuntu 24.04)",
+        "3 apps already migrated to manda (library, kbfish-api, rmis-api)",
+        "3 apps still pending migration (kbfish, kbfish-dev, kbfish-api-dev)"
+      ]
+    },
+    "perciweb": {
+      "hostname": "perciweb.psmfc.org",
+      "ip": "10.2.13.82",
+      "os": {
+        "name": "Ubuntu",
+        "version": "24.04 LTS",
+        "codename": "noble",
+        "platform": "linux"
+      },
+      "ssh": {
+        "user": "greg",
+        "port": 22,
+        "command": "ssh greg@perciweb.psmfc.org",
+        "sudo": true,
+        "keyPath": "/home/greg/.ssh/authorized_keys",
+        "homeDir": "/home/greg",
+        "sshStatus": "permission-denied-on-last-attempt"
+      },
+      "role": "production",
+      "status": "active",
+      "services": {
+        "nginx": { "installed": false },
+        "pm2": { "installed": false },
+        "apache": {
+          "installed": true,
+          "running": true,
+          "sitesPath": "/etc/apache2/sites-enabled/",
+          "sites": [
+            "www.streamnet.org",
+            "dev.streamnet.org",
+            "www.recfin.org",
+            "www.pikeminnow.org",
+            "fishregs.psmfc.org",
+            "kbfishc.org",
+            "www.ifrmp.org"
+          ]
+        },
+        "postgresql": { "installed": false },
+        "docker": { "installed": false },
+        "autofs": { "installed": false },
+        "nfs": { "installed": false }
+      },
+      "applications": [
+        {
+          "name": "streamnet-web",
+          "domain": "www.streamnet.org",
+          "framework": "Apache VirtualHost"
+        },
+        {
+          "name": "streamnet-dev",
+          "domain": "dev.streamnet.org",
+          "framework": "Apache VirtualHost"
+        },
+        {
+          "name": "recfin",
+          "domain": "www.recfin.org",
+          "framework": "Apache VirtualHost"
+        },
+        {
+          "name": "pikeminnow",
+          "domain": "www.pikeminnow.org",
+          "framework": "Apache VirtualHost"
+        },
+        {
+          "name": "fishregs",
+          "domain": "fishregs.psmfc.org",
+          "framework": "Apache VirtualHost"
+        },
+        {
+          "name": "kbfishc",
+          "domain": "kbfishc.org",
+          "framework": "Apache VirtualHost"
+        },
+        {
+          "name": "ifrmp",
+          "domain": "www.ifrmp.org",
+          "framework": "Apache VirtualHost"
+        }
+      ],
+      "notes": [
+        "Documented as hosting 13 virtual hosts - only 7 listed here from docs",
+        "SSH key may need to be re-added (permission denied on 2026-02-28)",
+        "Limited live data - details from documentation only"
+      ]
+    },
+    "percidev": {
+      "hostname": "percidev.psmfc.org",
+      "ip": "10.2.13.81",
+      "os": {
+        "name": "Ubuntu",
+        "version": "24.04.3 LTS",
+        "codename": "noble",
+        "platform": "linux"
+      },
+      "ssh": {
+        "user": "greg",
+        "port": 22,
+        "command": "ssh greg@percidev.psmfc.org",
+        "sudo": true,
+        "keyPath": "/home/greg/.ssh/authorized_keys",
+        "homeDir": "/home/greg"
+      },
+      "role": "development",
+      "status": "active",
+      "node": {
+        "version": "v18.19.1"
+      },
+      "services": {
+        "nginx": {
+          "installed": true,
+          "running": false,
+          "sitesPath": "/etc/nginx/sites-enabled/",
+          "sites": [
+            "default",
+            "nodeapp",
+            "salmon",
+            "sharks"
+          ]
+        },
+        "pm2": { "installed": false },
+        "apache": {
+          "installed": true,
+          "running": true,
+          "version": "2.4.58",
+          "sitesPath": "/etc/apache2/sites-enabled/",
+          "sites": []
+        },
+        "postgresql": { "installed": false },
+        "docker": {
+          "installed": true,
+          "running": true,
+          "version": "29.2.0"
+        },
+        "autofs": {
+          "installed": true,
+          "running": true
+        },
+        "nfs": { "installed": false }
+      },
+      "applications": [
+        {
+          "name": "dev-ifrmp",
+          "domain": "dev.ifrmp.org",
+          "framework": "Apache VirtualHost"
+        },
+        {
+          "name": "kbfishcdev",
+          "domain": "kbfishcdev.psmfc.org",
+          "framework": "Apache VirtualHost"
+        },
+        {
+          "name": "pikeminnowdev",
+          "domain": "pikeminnowdev.psmfc.org",
+          "framework": "Apache VirtualHost"
+        }
+      ],
+      "notes": [
+        "Nginx installed but not running; Apache is active web server",
+        "Nginx sites (nodeapp, salmon, sharks) appear to be inactive configs",
+        "Docker available for containerized development",
+        "Apache sites from docs - sites-enabled was empty on live check"
+      ]
+    },
+    "horus": {
+      "hostname": "horus.psmfc.org",
+      "ip": "10.2.13.84",
+      "os": {
+        "name": "Ubuntu",
+        "version": "24.04.4 LTS",
+        "codename": "noble",
+        "platform": "linux"
+      },
+      "ssh": {
+        "user": "greg",
+        "port": 22,
+        "command": "ssh greg@horus.psmfc.org",
+        "sudo": true,
+        "keyPath": "/home/greg/.ssh/authorized_keys",
+        "homeDir": "/home/greg"
+      },
+      "role": "storage",
+      "status": "active",
+      "node": {
+        "version": "v18.19.1"
+      },
+      "services": {
+        "nginx": { "installed": false },
+        "pm2": { "installed": false },
+        "apache": {
+          "installed": true,
+          "running": true,
+          "sitesPath": "/etc/apache2/sites-enabled/",
+          "sites": [
+            "hdev.rmis.org.conf",
+            "val.rmpc.org.conf",
+            "www.rmis.org.conf",
+            "www.rmpc.org.conf"
+          ]
+        },
+        "postgresql": {
+          "installed": true,
+          "running": true,
+          "version": "16.11",
+          "clusters": [
+            "14-main",
+            "16-main"
+          ]
+        },
+        "docker": { "installed": false },
+        "autofs": {
+          "installed": true,
+          "running": true
+        },
+        "nfs": {
+          "installed": true,
+          "running": true,
+          "exportPath": "/usr/home/",
+          "clients": ["manda", "phish", "saira"]
+        }
+      },
+      "applications": [
+        {
+          "name": "rmis-web",
+          "domain": "www.rmis.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/www.rmis.org.conf"
+        },
+        {
+          "name": "rmis-dev",
+          "domain": "hdev.rmis.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/hdev.rmis.org.conf"
+        },
+        {
+          "name": "rmpc-web",
+          "domain": "www.rmpc.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/www.rmpc.org.conf"
+        },
+        {
+          "name": "rmpc-val",
+          "domain": "val.rmpc.org",
+          "framework": "Apache VirtualHost",
+          "configPath": "/etc/apache2/sites-enabled/val.rmpc.org.conf"
+        }
+      ],
+      "notes": [
+        "Primary NFS file server - exports /usr/home/ with 30 agency directories",
+        "Also runs Apache (RMIS/RMPC sites) and PostgreSQL (clusters 14 and 16)",
+        "Mounted by manda/phish/saira via autofs"
+      ]
+    },
+    "saira": {
+      "hostname": "saira.psmfc.org",
+      "ip": "10.2.14.85",
+      "os": {
+        "name": "Ubuntu",
+        "version": "24.04.4 LTS",
+        "codename": "noble",
+        "platform": "linux"
+      },
+      "ssh": {
+        "user": "greg",
+        "port": 22,
+        "command": "ssh greg@saira.psmfc.org",
+        "sudo": true,
+        "keyPath": "/var/greg/.ssh/authorized_keys",
+        "homeDir": "/var/greg"
+      },
+      "role": "database",
+      "status": "active",
+      "services": {
+        "nginx": { "installed": false },
+        "pm2": { "installed": false },
+        "apache": { "installed": false },
+        "postgresql": {
+          "installed": true,
+          "running": true,
+          "version": "16.13",
+          "clusters": [
+            "16-main"
+          ]
+        },
+        "docker": { "installed": false },
+        "autofs": {
+          "installed": true,
+          "running": true
+        },
+        "nfs": { "installed": false }
+      },
+      "applications": [],
+      "notes": [
+        "Production PostgreSQL database server",
+        "AD-joined server - uses domain account (psmfc.org\\greg)",
+        "Custom sshd_config: authorized_keys at /var/greg/.ssh/ (not AD home)",
+        "Home directory /home/PSMFC.ORG/greg does not exist (uses /var/greg)"
+      ]
+    },
+    "laeta": {
+      "hostname": "laeta.psmfc.org",
+      "ip": "10.2.14.84",
+      "os": {
+        "name": "Ubuntu",
+        "version": "24.04.4 LTS",
+        "codename": "noble",
+        "platform": "linux"
+      },
+      "ssh": {
+        "user": "greg",
+        "port": 22,
+        "command": "ssh greg@laeta.psmfc.org",
+        "sudo": true,
+        "keyPath": "/home/greg/.ssh/authorized_keys",
+        "homeDir": "/home/greg"
+      },
+      "role": "database",
+      "status": "active",
+      "services": {
+        "nginx": { "installed": false },
+        "pm2": { "installed": false },
+        "apache": { "installed": false },
+        "postgresql": {
+          "installed": true,
+          "running": true,
+          "version": "16.12",
+          "clusters": [
+            "16-main"
+          ]
+        },
+        "docker": { "installed": false },
+        "autofs": {
+          "installed": true,
+          "running": true
+        },
+        "nfs": { "installed": false }
+      },
+      "applications": [],
+      "notes": [
+        "Development PostgreSQL database server"
+      ]
+    },
+    "streamnetweb": {
+      "hostname": "streamnetweb.psmfc.org",
+      "ip": null,
+      "os": {
+        "name": "Windows Server",
+        "version": "2019",
+        "build": "10.0.17763.8389",
+        "platform": "windows"
+      },
+      "ssh": {
+        "user": "greg",
+        "port": 22,
+        "command": "ssh greg@streamnetweb.psmfc.org",
+        "sudo": false,
+        "keyPath": "C:\\ProgramData\\ssh\\administrators_authorized_keys",
+        "opensshVersion": "v10.0.0.0"
+      },
+      "role": "production",
+      "status": "active",
+      "services": {
+        "nginx": { "installed": false },
+        "pm2": { "installed": false },
+        "apache": { "installed": false },
+        "postgresql": { "installed": false },
+        "docker": { "installed": false },
+        "autofs": { "installed": false },
+        "nfs": { "installed": false },
+        "iis": {
+          "installed": true,
+          "running": true
+        }
+      },
+      "applications": [
+        {
+          "name": "HEP",
+          "domain": "hep.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "HEPExplorer",
+          "domain": "hepexplorer.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "Images",
+          "domain": "images.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "CAX",
+          "domain": "cax.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "SNQ",
+          "domain": "snq.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "StreamNet",
+          "domain": "app.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "SOAP Webservices",
+          "domain": "ws.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "Development",
+          "domain": "development.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "CAPMAP",
+          "domain": "capmap.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "Champ",
+          "domain": "champ.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "Streamnet Wordpress",
+          "domain": "sb.streamnet.org",
+          "framework": "IIS/WordPress",
+          "status": "stopped"
+        },
+        {
+          "name": "CHAMPExplorer",
+          "domain": null,
+          "framework": "IIS",
+          "status": "stopped"
+        }
+      ],
+      "notes": [
+        "Windows Server 2019 with IIS",
+        "SSH via OpenSSH v10.0.0.0 (GitHub MSI install)",
+        "Domain account: psmfc.org\\greg",
+        "Also accessible via RDP",
+        "Default Web Site is stopped"
+      ]
+    },
+    "streamnetapi": {
+      "hostname": "streamnetapi.psmfc.org",
+      "ip": "10.2.13.88",
+      "os": {
+        "name": "Windows Server",
+        "version": "2019",
+        "build": "10.0.17763.8389",
+        "platform": "windows"
+      },
+      "ssh": {
+        "user": "greg",
+        "port": 22,
+        "command": "ssh greg@streamnetapi.psmfc.org",
+        "sudo": false,
+        "keyPath": "C:\\ProgramData\\ssh\\administrators_authorized_keys",
+        "opensshVersion": "v10.0.0.0"
+      },
+      "role": "production",
+      "status": "active",
+      "services": {
+        "nginx": { "installed": false },
+        "pm2": { "installed": false },
+        "apache": { "installed": false },
+        "postgresql": { "installed": false },
+        "docker": { "installed": false },
+        "autofs": { "installed": false },
+        "nfs": { "installed": false },
+        "iis": {
+          "installed": true,
+          "running": true
+        }
+      },
+      "applications": [
+        {
+          "name": "Default Web Site",
+          "domain": "streamnetapi.psmfc.org",
+          "framework": "IIS",
+          "status": "started"
+        },
+        {
+          "name": "API",
+          "domain": "api.streamnet.org",
+          "framework": "IIS",
+          "additionalDomains": ["apiv2.streamnet.org"],
+          "status": "started"
+        },
+        {
+          "name": "API Dev",
+          "domain": "apidev.streamnet.org",
+          "framework": "IIS",
+          "status": "started"
+        }
+      ],
+      "notes": [
+        "Windows Server 2019 with IIS",
+        "SSH via OpenSSH v10.0.0.0 (GitHub MSI install)",
+        "Domain account: psmfc.org\\greg",
+        "Also accessible via RDP",
+        "Hosts StreamNet API endpoints"
+      ]
+    }
+  }
+}
