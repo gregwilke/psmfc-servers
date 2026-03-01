@@ -97,7 +97,7 @@
       "ip": "10.2.13.182",
       "os": {
         "name": "Ubuntu",
-        "version": "24.04 LTS",
+        "version": "24.04.4 LTS",
         "codename": "noble",
         "platform": "linux"
       },
@@ -107,20 +107,26 @@
         "command": "ssh nodejs@manda.psmfc.org",
         "sudo": true,
         "keyPath": "/home/nodejs/.ssh/authorized_keys",
-        "homeDir": "/home/nodejs",
-        "sshStatus": "permission-denied-on-last-attempt"
+        "homeDir": "/home/nodejs"
       },
       "role": "production",
       "status": "active",
+      "node": {
+        "version": "v22.16.0",
+        "manager": "nvm",
+        "nvmPath": "/home/nodejs/.nvm/versions/node/v22.16.0"
+      },
       "services": {
         "nginx": {
           "installed": true,
           "running": true,
+          "version": "1.24.0",
           "configPath": "/etc/nginx/",
           "sitesPath": "/etc/nginx/sites-enabled/",
           "sites": [
             "api2.streamnet.org.conf",
             "data.kbfishc.org.conf",
+            "default",
             "dev.kbfishc.org.conf",
             "internal.streamnet.org.conf",
             "kbfish-api.psmfc.org.conf",
@@ -238,7 +244,8 @@
         "24 agency CWT directories under /home/",
         "Hourly cron runs /usr/local/sbin/lscwtdirs for directory persistence",
         "Replacement for phish - most services already migrated",
-        "SSH key may need to be re-added (permission denied on 2026-02-28)"
+        "NFS mount from horus masks local .nvm/.pm2 dirs (PM2 started before mount)",
+        "All 6 apps confirmed running via process list"
       ]
     },
     "gabara": {
