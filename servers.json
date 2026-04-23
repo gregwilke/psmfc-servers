@@ -106,15 +106,15 @@
         "port": 22,
         "command": "ssh nodejs@manda.psmfc.org",
         "sudo": true,
-        "keyPath": "/home/nodejs/.ssh/authorized_keys",
-        "homeDir": "/home/nodejs"
+        "keyPath": "/var/nodejs/.ssh/authorized_keys",
+        "homeDir": "/var/nodejs"
       },
       "role": "production",
       "status": "active",
       "node": {
         "version": "v22.16.0",
         "manager": "nvm",
-        "nvmPath": "/home/nodejs/.nvm/versions/node/v22.16.0"
+        "nvmPath": "/var/nodejs/.nvm/versions/node/v22.16.0"
       },
       "services": {
         "nginx": {
@@ -244,7 +244,7 @@
         "24 agency CWT directories under /home/",
         "Hourly cron runs /usr/local/sbin/lscwtdirs for directory persistence",
         "Replacement for phish - most services already migrated",
-        "NFS mount from horus masks local .nvm/.pm2 dirs (PM2 started before mount)",
+        "nodejs home moved to /var/nodejs to avoid autofs masking .nvm/.pm2 (2026-03-02)",
         "All 6 apps confirmed running via process list"
       ]
     },

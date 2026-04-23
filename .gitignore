@@ -25,3 +25,9 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Node
+node_modules/
+
+# Claude Code
+.claude/
