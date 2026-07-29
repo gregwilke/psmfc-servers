@@ -223,6 +223,16 @@
           "status": "stopped",
           "appPath": "/var/nodejs/streamnet-api",
           "configPath": "/etc/nginx/sites-enabled/api2.streamnet.org.conf"
+        },
+        {
+          "name": "platform-admin",
+          "domain": null,
+          "framework": "Node.js",
+          "manager": "pm2",
+          "port": 5100,
+          "status": "online",
+          "appPath": "/var/nodejs/umbrella-platform/platform-admin",
+          "notes": "Platform DB admin UI (users/orgs/keys/request-log viewer). Internal only, deliberately NOT proxied through nginx; binds 0.0.0.0:5100. Workstation subnet cannot reach it (ACL passes only 80/443 to server VLAN) - access via SSH tunnel: ssh -N -L 5100:127.0.0.1:5100 nodejs@manda.psmfc.org. Env (PLATFORM_DB_*, ADMIN_PORT, ADMIN_JWT_SECRET) in appPath/.env, injected via shell export at pm2 start; NODE_ENV deliberately unset. Deployed 2026-07-27."
         }
       ],
       "sslCerts": {
