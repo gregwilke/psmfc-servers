@@ -173,7 +173,7 @@
           "status": "online",
           "appPath": "/var/www/html/kbfish",
           "configPath": "/etc/nginx/sites-enabled/data.kbfishc.org.conf",
-          "notes": "Updated to dev feature level 2026-07-30: master e356fea, SvelteKit pinned ^1.30.4 (floating 'next' dist-tag removed). Launched via custom server.js + --env-file (Set-Cookie fix + Helpdesk runtime secrets); rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
+          "notes": "Updated 2026-07-31: master 75cf06b (invalidate org lookup cache after org create/update). Previously 2026-07-30: e356fea, SvelteKit pinned ^1.30.4. Launched via custom server.js + --env-file (Set-Cookie fix + Helpdesk runtime secrets); rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
         },
         {
           "name": "kbfish-dev",
@@ -183,7 +183,8 @@
           "port": 3002,
           "status": "online",
           "appPath": "/var/www/html/kbfish-dev",
-          "configPath": "/etc/nginx/sites-enabled/dev.kbfishc.org.conf"
+          "configPath": "/etc/nginx/sites-enabled/dev.kbfishc.org.conf",
+          "notes": "Updated 2026-07-31: master 75cf06b (invalidate org lookup cache after org create/update). Launched via custom server.js + --env-file; rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
         },
         {
           "name": "rmis-api",
