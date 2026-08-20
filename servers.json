@@ -184,7 +184,7 @@
           "status": "online",
           "appPath": "/var/www/html/kbfish-dev",
           "configPath": "/etc/nginx/sites-enabled/dev.kbfishc.org.conf",
-          "notes": "Updated 2026-07-31: master 75cf06b (invalidate org lookup cache after org create/update). Launched via custom server.js + --env-file; rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
+          "notes": "Updated 2026-08-19: master 407e5b4 (tag history contact email column + PRIVATE org badge; charts snippet public metrics strip). Launched via custom server.js + --env-file; rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
         },
         {
           "name": "rmis-api",
@@ -215,7 +215,8 @@
           "port": 5006,
           "status": "online",
           "appPath": "/var/nodejs/kbfish-api-dev",
-          "configPath": "/etc/nginx/sites-enabled/test.kbfishc.org.conf"
+          "configPath": "/etc/nginx/sites-enabled/test.kbfishc.org.conf",
+          "notes": "Updated 2026-08-19: main 23234a5 (mrrtotals in public tagtotals, orgprivate flag + species/sex suppression on encounters, duplicate MARK rejection on mrrcaptures POST). New database/encounters_refresh.sql is a local-dev copy of the production Encounters agent job, not a migration."
         },
         {
           "name": "streamnet-api",
