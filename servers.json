@@ -571,7 +571,7 @@
           "domain": "kbfishc.org",
           "framework": "Apache VirtualHost",
           "configPath": "/etc/apache2/sites-enabled/kbfishc.org.conf",
-          "notes": "WordPress at /srv/www/kbfishc/htdocs. wp-config.php KBFC_API_URL/KBFC_API_KEY updated 2026-08-20: prod API https://kbfish-api.psmfc.org + dedicated reader key (contact 'WordPress Public Site', PSMFC org, permissions=reader; was dev URL + dev key). Backup: wp-config.php.bak-20260820. Code Snippets plugin: 'KBFC Charts' (server-side, uses wp-config key) + 'PIT tag search' (OLD browser-side snippet, still embeds Greg's admin key in page source — replace with docs/search_snippet.txt rewrite and rotate that key). No wp-cli installed; clear transients via php -r + wp-load.php."
+          "notes": "WordPress at /srv/www/kbfishc/htdocs. wp-config.php KBFC_API_URL/KBFC_API_KEY updated 2026-08-20: prod API https://kbfish-api.psmfc.org + dedicated reader key (contact 'WordPress Public Site', PSMFC org, permissions=reader). Backup: wp-config.php.bak-20260820. Code Snippets 5 'PIT tag search' + 6 'KBFC Charts' replaced 2026-08-20 with kbfish repo docs/search_snippet.txt + docs/charts_snippet.txt (server-side, no keys in page source; verified: charts metrics strip renders, search blanks dates for orgprivate orgs). Apache vhost: added /wp-admin/admin-ajax.php 'Require all granted' exception (search proxy needs it; /wp-admin + /wp-login.php remain PSMFC-only; backup kbfishc.org.conf.bak-20260820). REMAINING: rotate Greg's admin API key 24E8F4C6 (was in public page source pre-rewrite). No wp-cli; clear transients via php -r + wp-load.php."
         },
         {
           "name": "kbfishcdev",
