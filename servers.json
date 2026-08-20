@@ -184,7 +184,7 @@
           "status": "online",
           "appPath": "/var/www/html/kbfish-dev",
           "configPath": "/etc/nginx/sites-enabled/dev.kbfishc.org.conf",
-          "notes": "Updated 2026-08-20: master 9bc07c8 (fix intermittently missing site map legend). Launched via custom server.js + --env-file; rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
+          "notes": "Updated 2026-08-20: master c0baa8f (docs-only public PIT tag search snippet, rebuilt so build hash matches; prior same-day: 9bc07c8 site map legend fix). Launched via custom server.js + --env-file; rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
         },
         {
           "name": "rmis-api",
