@@ -570,7 +570,8 @@
           "name": "kbfishc",
           "domain": "kbfishc.org",
           "framework": "Apache VirtualHost",
-          "configPath": "/etc/apache2/sites-enabled/kbfishc.org.conf"
+          "configPath": "/etc/apache2/sites-enabled/kbfishc.org.conf",
+          "notes": "WordPress at /srv/www/kbfishc/htdocs. wp-config.php KBFC_API_URL/KBFC_API_KEY updated 2026-08-20: prod API https://kbfish-api.psmfc.org + dedicated reader key (contact 'WordPress Public Site', PSMFC org, permissions=reader; was dev URL + dev key). Backup: wp-config.php.bak-20260820. Code Snippets plugin: 'KBFC Charts' (server-side, uses wp-config key) + 'PIT tag search' (OLD browser-side snippet, still embeds Greg's admin key in page source — replace with docs/search_snippet.txt rewrite and rotate that key). No wp-cli installed; clear transients via php -r + wp-load.php."
         },
         {
           "name": "kbfishcdev",
