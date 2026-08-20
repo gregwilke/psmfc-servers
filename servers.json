@@ -205,7 +205,7 @@
           "status": "online",
           "appPath": "/var/nodejs/kbfish-api",
           "configPath": "/etc/nginx/sites-enabled/kbfish-api.psmfc.org.conf",
-          "notes": "Updated to dev feature level 2026-07-30: main b6fd50f, engine 0.15.1 (local branch 'master' tracks origin/main). AUTH_STORE unset = LOCAL auth (identity flip to platform DB is a future staged package). LOG_TRANSPORT=file,platform with PLATFORM_ENV=production (rows land in platform.request_logs as kbfish/production); VALIDATION_MODE=shadow armed (log-only, gathering enforce-gate evidence). Runs ts-node directly, no build step."
+          "notes": "Updated 2026-08-20: main d44a8fc, same level as dev API (Sprint 3: orgprivate flag + species/sex suppression on encounters, mrrtotals in public tagtotals, duplicate MARK rejection, isCsvDownload limit fix). NOTE: prod kbfish WEB deliberately NOT updated (still 75cf06b, no taghistory contact/PRIVATE UI). Encounters contact fields depend on the production MSSQL agent job picking up the org-contact ETL changes (see database/encounters_refresh.sql header). AUTH_STORE unset = LOCAL auth; LOG_TRANSPORT=file,platform, PLATFORM_ENV=production; VALIDATION_MODE=shadow. Runs ts-node directly, no build step. Local branch 'master' tracks origin/main."
         },
         {
           "name": "kbfish-api-dev",
