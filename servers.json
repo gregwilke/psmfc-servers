@@ -173,7 +173,7 @@
           "status": "online",
           "appPath": "/var/www/html/kbfish",
           "configPath": "/etc/nginx/sites-enabled/data.kbfishc.org.conf",
-          "notes": "Updated 2026-07-31: master 75cf06b (invalidate org lookup cache after org create/update). Previously 2026-07-30: e356fea, SvelteKit pinned ^1.30.4. Launched via custom server.js + --env-file (Set-Cookie fix + Helpdesk runtime secrets); rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
+          "notes": "Updated 2026-08-30: master ddeed9a (hold at 75cf06b lifted per user; taghistory contact email + PRIVATE badge, public metrics strip, site map legend fix, search/charts snippet docs). No package changes; rebuild + restart only. Now converged with kbfish-dev. Launched via custom server.js + --env-file (Set-Cookie fix + Helpdesk runtime secrets); rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
         },
         {
           "name": "kbfish-dev",
@@ -184,7 +184,7 @@
           "status": "online",
           "appPath": "/var/www/html/kbfish-dev",
           "configPath": "/etc/nginx/sites-enabled/dev.kbfishc.org.conf",
-          "notes": "Updated 2026-08-20: master c0baa8f (docs-only public PIT tag search snippet, rebuilt so build hash matches; prior same-day: 9bc07c8 site map legend fix). Launched via custom server.js + --env-file; rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
+          "notes": "Updated 2026-08-30: master ddeed9a (docs-only search snippet prefix-match tweak; checkout was already at ddeed9a, rebuilt so build hash matches). Launched via custom server.js + --env-file; rebuild needs NODE_OPTIONS=--max-old-space-size=4096."
         },
         {
           "name": "rmis-api",
@@ -205,7 +205,7 @@
           "status": "online",
           "appPath": "/var/nodejs/kbfish-api",
           "configPath": "/etc/nginx/sites-enabled/kbfish-api.psmfc.org.conf",
-          "notes": "Updated 2026-08-20: main d44a8fc, same level as dev API (Sprint 3: orgprivate flag + species/sex suppression on encounters, mrrtotals in public tagtotals, duplicate MARK rejection, isCsvDownload limit fix). NOTE: prod kbfish WEB deliberately NOT updated (still 75cf06b, no taghistory contact/PRIVATE UI). Encounters contact fields depend on the production MSSQL agent job picking up the org-contact ETL changes (see database/encounters_refresh.sql header). AUTH_STORE unset = LOCAL auth; LOG_TRANSPORT=file,platform, PLATFORM_ENV=production; VALIDATION_MODE=shadow. Runs ts-node directly, no build step. Local branch 'master' tracks origin/main."
+          "notes": "Updated 2026-08-20: main d44a8fc, same level as dev API (Sprint 3: orgprivate flag + species/sex suppression on encounters, mrrtotals in public tagtotals, duplicate MARK rejection, isCsvDownload limit fix). NOTE: prod kbfish WEB updated to ddeed9a on 2026-08-30 (hold lifted), so web/API are matched. Encounters contact fields depend on the production MSSQL agent job picking up the org-contact ETL changes (see database/encounters_refresh.sql header). AUTH_STORE unset = LOCAL auth; LOG_TRANSPORT=file,platform, PLATFORM_ENV=production; VALIDATION_MODE=shadow. Runs ts-node directly, no build step. Local branch 'master' tracks origin/main."
         },
         {
           "name": "kbfish-api-dev",
